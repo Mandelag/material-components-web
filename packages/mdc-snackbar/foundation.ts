@@ -27,7 +27,7 @@ import {MDCSnackbarAdapter} from './adapter';
 import {cssClasses, numbers, strings} from './constants';
 
 const {OPENING, OPEN, CLOSING} = cssClasses;
-const {REASON_ACTION, REASON_DISMISS} = strings;
+const {REASON_ACTION, REASON_DISMISS, REASON_SECONDARY_ACTION} = strings;
 
 /** MDC Snackbar Foundation */
 export class MDCSnackbarFoundation extends MDCFoundation<MDCSnackbarAdapter> {
@@ -172,12 +172,16 @@ export class MDCSnackbarFoundation extends MDCFoundation<MDCSnackbarAdapter> {
     }
   }
 
-  handleActionButtonClick(_evt: MouseEvent) {
+  handleActionButtonClick(evt: MouseEvent) {
     this.close(REASON_ACTION);
   }
 
-  handleActionIconClick(_evt: MouseEvent) {
+  handleActionIconClick(evt: MouseEvent) {
     this.close(REASON_DISMISS);
+  }
+
+  handleSecondaryActionButtonClick(evt: MouseEvent) {
+    this.close(REASON_SECONDARY_ACTION);
   }
 
   private clearAutoDismissTimer() {
